@@ -1,0 +1,13 @@
+li {
+    color: #424242;
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 20px;
+    margin: 0 0 0 50px;
+}
+.wrapper {
+    display: flex;
+}
+.center {
+    margin: auto;
+    width: 66%;
+}
