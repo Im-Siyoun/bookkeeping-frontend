@@ -1,4 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Box = styled.fieldset`
+    justify-content: center;
+    text-align: center;
+`;
+const Inputbox = styled.input`
+    justify-content: center;
+    text-align: center;
+`;
 
 class PublisherRegistration extends React.Component {
     constructor(props) {
@@ -24,13 +34,13 @@ class PublisherRegistration extends React.Component {
 
     render() {
         return (
-            <div className="book">
+            <div className="publisher">
             <form onSubmit={this.handleSubmit}>
-                <fieldset>
+                <Box>
                     <legend>출판사 등록하기</legend>
-                    출판사 이름을 입력하세요 : <br/><input type="text" name="name"/>
+                    출판사 이름을 입력하세요 : <br/><Inputbox type="text" name="name"/><br/>
                     <input type="submit" value="전송"/>
-                </fieldset>
+                </Box>
             </form>
             </div>
     )}

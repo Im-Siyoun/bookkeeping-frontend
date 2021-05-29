@@ -6,10 +6,10 @@ function Navigation() {
     return (
         <>
           <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            <Navbar.Brand href="http://localhost:3000/main">메인페이지</Navbar.Brand>
             <Nav className="mr-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#features">Features</Nav.Link>
+              <Nav.Link href="http://localhost:3000/register">등록하기</Nav.Link>
+              <Nav.Link href="http://localhost:3000/post">글쓰기</Nav.Link>
               <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav>
             <Form inline>
