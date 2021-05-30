@@ -14,7 +14,7 @@ const Box = styled.div`
     width: 80%;
 `;
 
-const Textbox = styled.textarea`
+const Textbox = styled.div`
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 4px;
@@ -29,37 +29,24 @@ const Submit = styled.input`
     border-radius: 4px;
 `;
 
-class post extends React.Component {
+class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            content: []
+            content: [],
         };
     }
 
-    handleRegister = async (formData) => {
-        alert('등록 핸들러 실행됨')
-        return await axios.post('http://localhost:3002/library/post', formData);
-    }
-
-
-    handleSubmit = (e) => {
-        alert('제출 핸들러 실행됨')
-        this.handleRegister({
-            book_title: e.target.book.value,
-            content: e.target.post.value
-        });
-    }
-
     componentDidMount() {
-        fetch('http://localhost:3002/library/booklist')
+        const queryID = this.props.location.search.split('=')[1];
+        fetch(`http://localhost:3002/library/postlist?id=${queryID}`)
             .then(res => res.json())
             .then(
                 (data) => {this.setState({
                     isLoaded: true,
-                    content: data.booklist
+                    content: data.postlist
                 });
             },
             (error) => {this.setState({
@@ -68,28 +55,31 @@ class post extends React.Component {
             });
         })
     }
+
     render() {
-        const { content } = this.state;
+        const { content, error, isloaded } = this.state;
+        if (!content) {
+            return (
+                <div>
+                <Navigation/>
+                <Box>
+                    <h1>아직 독서록을 안썼나봐요...</h1>
+                </Box>
+            </div>
+            )
+        }
         return (
         <div>
             <Navigation/>
-            <form onSubmit={this.handleSubmit}>
-                <Box>
-                    <h1>글쓰기</h1>
-                    <hr/>
-                    <select name='book'>
-                        <option value='' selected>책 선택</option>
-                        {content.map(book => (
-                            <option value={book.title}>{book.title}</option>
-                        ))}
-                    </select>
-                    <Textbox name="post" rows="5" cols="25"/>
-                    <Submit type='submit'/>
-                </Box>
-            </form>
+            <Box>
+                <h3>{content.Book_title}</h3>
+                <Textbox>
+                    <h2>{content.Content}</h2>
+                </Textbox>
+            </Box>
         </div>
         )
     }
 }
 
-export default post;
+export default Post;

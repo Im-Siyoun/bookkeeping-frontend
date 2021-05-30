@@ -2,8 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Books = styled.div`
-    font-size: 2px;
+    font-size: 20px;
     text-align: center;
+    align-content: center;
+    margin-left: 50%;
+`;
+
+const Cards = styled.div`
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    margin: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 `;
 
 class Booklist extends React.Component {
@@ -44,9 +58,11 @@ class Booklist extends React.Component {
                 <div className="listcontent" class="center">
                     <Books>
                         {content.map(book => (
-                            <div key={book._id}>
-                                {book.title}
-                            </div>
+                            <Cards>
+                                <a href={ `http://localhost:3000/post?id=${book.title}` }>
+                                    {book.title}
+                                </a>
+                            </Cards>
                         ))}
                     </Books>
                 </div>
